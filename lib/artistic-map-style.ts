@@ -41,7 +41,12 @@ function safeSetPaint(
 ) {
   try {
     if (map.getLayer(layerId)) {
-      map.setPaintProperty(layerId, property, value);
+      const setPaint = map.setPaintProperty as (
+        id: string,
+        prop: string,
+        val: unknown,
+      ) => mapboxgl.Map;
+      setPaint(layerId, property, value);
     }
   } catch {
     // Layer may not support this paint property in the active style
