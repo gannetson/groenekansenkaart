@@ -1,0 +1,5 @@
+-- Data migration: Leiden Vergroenen project locations
+-- Run with: npm run db:seed:leiden
+--
+-- Adds 26 vergroening project locations across Leiden.
+-- Project data is maintained in prisma/data/leiden-vergroenen-projects.ts

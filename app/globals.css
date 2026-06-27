@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@import "mapbox-gl/dist/mapbox-gl.css";
+
+:root {
+  --color-primary: #1b5e3b;
+  --color-secondary: #4caf50;
+  --color-light: #a8d08d;
+  --color-bg: #f1f7ef;
+  --color-accent: #4da6d9;
+  --color-warn: #ffc857;
+  --color-text: #1d2b1f;
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --font-primary: var(--font-nunito-sans), "Nunito Sans", sans-serif;
+  --font-secondary: var(--font-quicksand), "Quicksand", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-light: var(--color-light);
+  --color-accent: var(--color-accent);
+  --color-warn: var(--color-warn);
+  --font-sans: var(--font-primary);
+  --font-display: var(--font-secondary);
+  --radius-card: var(--radius);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+}
+
+.font-display {
+  font-family: var(--font-secondary);
+}
+
+/* Map canvas — soft illustrated tint */
+.map-artistic .mapboxgl-canvas {
+  filter: saturate(1.08) contrast(0.96);
+}
+
+/* Mapbox popup — always above markers */
+.mapboxgl-popup {
+  z-index: 100 !important;
+}
+
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.mapboxgl-popup-tip {
+  display: none;
+}
+
+/* Panel cards — sidebar & map */
+.panel-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: white;
+  box-shadow:
+    0 12px 40px rgba(27, 94, 59, 0.18),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Teardrop map markers */
+.project-marker {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 44px;
+  height: 52px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0;
+}
+
+.project-marker:hover {
+  transform: scale(1.12) translateY(-4px);
+}
+
+.project-marker--selected {
+  transform: scale(1.14) translateY(-4px);
+  z-index: 2;
+}
+
+.project-marker--selected .project-marker-pin {
+  box-shadow:
+    0 0 0 3px rgba(77, 166, 217, 0.45),
+    0 6px 20px rgba(27, 94, 59, 0.45);
+}
+
+.project-marker-pin {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 14px rgba(27, 94, 59, 0.35);
+  transition: box-shadow 0.2s ease;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.project-marker:hover .project-marker-pin {
+  box-shadow: 0 6px 20px rgba(27, 94, 59, 0.45);
+}
+
+.project-marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+}
+
+.project-marker-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Markers stay below popups */
+.mapboxgl-marker {
+  z-index: 1 !important;
+}
