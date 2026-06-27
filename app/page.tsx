@@ -11,7 +11,8 @@ export default async function HomePage() {
 
   try {
     projects = await getPublishedProjects();
-  } catch {
+  } catch (error) {
+    console.error("Failed to load published projects:", error);
     projects = [];
   }
 
